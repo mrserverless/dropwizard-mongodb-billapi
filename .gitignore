@@ -4,6 +4,9 @@ atlassian-ide-plugin.xml
 logs
 *.iml
 *.ipr
+.gradle
+build
+
 #Eclipse-specific
 .settings/
 .classpath
