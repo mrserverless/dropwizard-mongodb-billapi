@@ -7,6 +7,7 @@ import com.codahale.metrics.annotation.Timed;
 import org.mongojack.DBCursor;
 import org.mongojack.JacksonDBCollection;
 
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -21,8 +22,6 @@ import static org.mongojack.JacksonDBCollection.wrap;
  */
 
 @Path("/subscription/")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
 public class SubscriptionResource {
 
     private JacksonDBCollection<Subscription, String> subscriptions;
@@ -36,8 +35,9 @@ public class SubscriptionResource {
 
     @PUT
     @Timed
-    public Response createSubscription(Subscription sub) {
-        DBCursor<Subscription> cursor = subscriptions.find().is("subscriptionId", sub.subscriptionID);
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createSubscription(@Valid Subscription sub) {
+        DBCursor<Subscription> cursor = subscriptions.find().is("_id", sub.subscriptionID);
         if (cursor.hasNext()) {
             return Response.status(Response.Status.CONFLICT).build();
         }
@@ -49,10 +49,13 @@ public class SubscriptionResource {
 
     @GET
     @Timed
-    public Notification triggerNotification(@PathParam("subscriptionID") String subscriptionID) {
+    @Path("trigger/{subscriptionID}/{billID}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Notification triggerNotification(@PathParam("subscriptionID") String subscriptionID,
+                                            @PathParam("billID") String billID) {
         Notification notification = null;
 
-        DBCursor<Subscription> cursor = subscriptions.find().is("subscriptionId", subscriptionID);
+        DBCursor<Subscription> cursor = subscriptions.find().is("_id", subscriptionID);
         if (cursor.hasNext()) {
             Subscription subscription = cursor.next();
 
@@ -60,9 +63,8 @@ public class SubscriptionResource {
 
             notification.notificationID = UUID.randomUUID().toString();
             notification.subscriptionID = subscriptionID;
-            notification.premiseAPIGeneratedID = subscription.getSubscriptionForPremiseAPIGeneratedID();
-            notification.providerAPIGeneratedID = subscription.getSubscriptionForProviderAPIGeneratedID();
-
+            notification.notificationURLForBillDataRetrival = subscription.subscriptionCallBackURL +
+                    "?billID=" + billID;
         }
 
         return notification;

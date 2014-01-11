@@ -3,7 +3,7 @@ apply plugin: 'fatjar'
 apply plugin: 'application'
 
 group = 'com.apmasphere'
-version = '0.1'
+version = '0.2'
 
 sourceCompatibility = 1.7
 
@@ -24,11 +24,6 @@ repositories {
     mavenCentral()
 }
 
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.10'
-}
-
 project.ext {
     dropwizardVersion = '0.7.0-SNAPSHOT'
     mongojackVersion = '2.0.0-RC5'
@@ -36,6 +31,7 @@ project.ext {
 }
 
 dependencies {
+    compile 'com.google.apis:google-api-services-compute:v1-rev6-1.17.0-rc'
     compile 'io.dropwizard:dropwizard-core:' + dropwizardVersion
     compile 'org.mongojack:mongojack:' + mongojackVersion
     testCompile group: 'junit', name: 'junit', version: '4.11'
@@ -54,6 +50,26 @@ fatJar {
     exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.10'
+}
+
+//TODO need to use SSH plugin instead of EXEC
+task gcDeploy(type:Exec) {
+    workingDir './build/libs'
+
+    commandLine 'gcutil --project=rock-terra-402 push ray-interview *fat.jar /home/yun';
+
+    //store the output instead of printing to the console:
+    standardOutput = new ByteArrayOutputStream()
+
+    //extension method stopTomcat.output() can be used to obtain the output:
+    ext.output = {
+        return standardOutput.toString()
+    }
+}
+
 run {
     args 'server', dropWizardConfig
 }
+

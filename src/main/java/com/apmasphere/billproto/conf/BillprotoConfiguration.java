@@ -1,6 +1,5 @@
 package com.apmasphere.billproto.conf;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
 
 import javax.validation.Valid;
@@ -13,10 +12,6 @@ public class BillprotoConfiguration extends Configuration {
 
     @Valid
     @NotNull
-    @JsonProperty
-    private MongoConfiguration mongo = new MongoConfiguration();
+    public MongoConfiguration mongo = new MongoConfiguration();
 
-    public MongoConfiguration getMongo() {
-        return mongo;
-    }
 }

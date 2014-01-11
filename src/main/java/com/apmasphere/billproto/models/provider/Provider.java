@@ -4,9 +4,7 @@ package com.apmasphere.billproto.models.provider;
 import org.mongojack.Id;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Provider {
 
@@ -58,6 +56,5 @@ public class Provider {
     public String providerRequires;
     
     public List<ProviderSubscription> providerSubscriptions = new ArrayList<ProviderSubscription>();
-    public Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 }

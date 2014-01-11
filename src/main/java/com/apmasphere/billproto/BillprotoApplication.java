@@ -27,7 +27,7 @@ public class BillprotoApplication extends Application<BillprotoConfiguration> {
     @Override
     public void run(BillprotoConfiguration configuration, Environment environment) throws Exception {
 
-        MongoManaged mongoManaged = new MongoManaged(configuration.getMongo());
+        MongoManaged mongoManaged = new MongoManaged(configuration.mongo);
         environment.lifecycle().manage(mongoManaged);
         environment.healthChecks().register("MongoHealthCheck", new MongoHealthCheck(mongoManaged));
 

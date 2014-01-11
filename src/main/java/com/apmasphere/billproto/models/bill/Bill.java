@@ -1,11 +1,13 @@
 
 package com.apmasphere.billproto.models.bill;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.mongojack.Id;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Bill {
 
     @Id

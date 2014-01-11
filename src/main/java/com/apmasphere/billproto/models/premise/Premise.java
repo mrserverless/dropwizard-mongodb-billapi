@@ -4,9 +4,7 @@ package com.apmasphere.billproto.models.premise;
 import org.mongojack.Id;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Premise {
 
@@ -36,7 +34,6 @@ public class Premise {
     public String premisePreviousAgency;
     
     public List<PremiseSubscription> premiseSubscriptions = new ArrayList<PremiseSubscription>();
-    public Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
    
 }

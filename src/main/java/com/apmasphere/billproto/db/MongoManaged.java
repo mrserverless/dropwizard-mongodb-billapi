@@ -16,7 +16,7 @@ public class MongoManaged implements Managed {
     public MongoManaged (MongoConfiguration mongoConfig) throws Exception {
 
         this.mongo = new Mongo(mongoConfig.host, mongoConfig.port);
-        this.db = mongo.getDB(mongoConfig.getDb());
+        this.db = mongo.getDB(mongoConfig.db);
         db.authenticate(mongoConfig.user, mongoConfig.password.toCharArray());
 
     }

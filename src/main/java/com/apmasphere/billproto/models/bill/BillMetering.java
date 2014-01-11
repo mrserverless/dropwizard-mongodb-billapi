@@ -11,6 +11,5 @@ public class BillMetering {
     public Integer thisValue;
     
     public Integer PreviousValue;
-    public Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 }

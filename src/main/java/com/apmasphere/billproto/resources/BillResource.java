@@ -15,7 +15,6 @@ import static org.mongojack.JacksonDBCollection.wrap;
  * Created by yun on 10/01/2014.
  */
 @Path("/bill/")
-@Produces(MediaType.APPLICATION_JSON)
 public class BillResource {
 
     private JacksonDBCollection<Bill, String> bills;
@@ -29,16 +28,15 @@ public class BillResource {
 
     @GET()
     @Timed
-    public Bill createSubscription(@PathParam("billID") String billID) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Bill getBill(@QueryParam("billID") String billID) {
 
         Bill result = null;
 
-        DBCursor<Bill> cursor = bills.find().is("billID", billID);
+        DBCursor<Bill> cursor = bills.find().is("_id", billID);
         if (cursor.hasNext()) {
             result =  cursor.next();
         }
-
-        //TODO return a status NOT FOUND
         return result;
     }
 }
