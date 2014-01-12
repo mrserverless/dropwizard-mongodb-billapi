@@ -31,7 +31,6 @@ project.ext {
 }
 
 dependencies {
-    compile 'com.google.apis:google-api-services-compute:v1-rev6-1.17.0-rc'
     compile 'io.dropwizard:dropwizard-core:' + dropwizardVersion
     compile 'org.mongojack:mongojack:' + mongojackVersion
     testCompile group: 'junit', name: 'junit', version: '4.11'
