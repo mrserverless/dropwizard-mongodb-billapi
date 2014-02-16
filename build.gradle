@@ -1,9 +1,11 @@
+import com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer
+
+apply plugin: 'shadow'
 apply plugin: 'java'
-apply plugin: 'fatjar'
 apply plugin: 'application'
 
 group = 'com.apmasphere'
-version = '0.2'
+version = '0.3'
 
 sourceCompatibility = 1.7
 
@@ -11,11 +13,10 @@ mainClassName = 'com.apmasphere.billproto.BillprotoApplication'
 
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
     }
-
     dependencies {
-        classpath group: 'eu.appsatori', name: 'gradle-fatjar-plugin', version: '0.1.3'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:0.8'
     }
 }
 
@@ -25,7 +26,7 @@ repositories {
 }
 
 project.ext {
-    dropwizardVersion = '0.7.0-SNAPSHOT'
+    dropwizardVersion = '0.7.0-rc1'
     mongojackVersion = '2.0.0-RC5'
     dropWizardConfig = './src/main/resources/billproto.yml'
 }
@@ -36,17 +37,18 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
-// Configure the fatJar task
-fatJar {
-    classifier 'fat'
+// Configure the shadow jar task
+shadow {
+    artifactAttached false
+    transformer(ServiceFileTransformer)
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+}
 
-    // We need to add the main class to the manifest, otherwise the JAR won't start.
+jar {
     manifest {
         attributes 'Main-Class': mainClassName
     }
-
-    // We have to exclude signature files from the fat JAR, otherwise we'll get invalid signature file digest errors.
-    exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
 }
 
 task wrapper(type: Wrapper) {
