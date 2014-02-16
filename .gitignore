@@ -6,6 +6,7 @@ logs
 *.ipr
 .gradle
 build
+out
 
 #Eclipse-specific
 .settings/
