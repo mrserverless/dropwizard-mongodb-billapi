@@ -26,8 +26,8 @@ repositories {
 }
 
 project.ext {
-    dropwizardVersion = '0.7.0-rc1'
-    mongojackVersion = '2.0.0-RC5'
+    dropwizardVersion = '0.7.0-rc2'
+    mongojackVersion = '2.0.0'
     dropWizardConfig = './src/main/resources/billproto.yml'
 }
 
