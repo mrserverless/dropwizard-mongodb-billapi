@@ -1,6 +1,6 @@
-package com.apmasphere.billproto.db;
+package com.apmasphere.billapi.db;
 
-import com.apmasphere.billproto.conf.MongoConfiguration;
+import com.apmasphere.billapi.MongoConfiguration;
 import com.mongodb.DB;
 import com.mongodb.Mongo;
 import io.dropwizard.lifecycle.Managed;

@@ -1,5 +1,5 @@
 
-package com.apmasphere.billproto.models.premise;
+package com.apmasphere.billapi.models.premise;
 
 public class PremiseSubscription {
 

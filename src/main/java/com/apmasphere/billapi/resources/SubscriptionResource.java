@@ -1,8 +1,8 @@
-package com.apmasphere.billproto.resources;
+package com.apmasphere.billapi.resources;
 
-import com.apmasphere.billproto.db.MongoManaged;
-import com.apmasphere.billproto.models.bill.Notification;
-import com.apmasphere.billproto.models.subscription.Subscription;
+import com.apmasphere.billapi.db.MongoManaged;
+import com.apmasphere.billapi.models.bill.Notification;
+import com.apmasphere.billapi.models.subscription.Subscription;
 import com.codahale.metrics.annotation.Timed;
 import org.mongojack.DBCursor;
 import org.mongojack.JacksonDBCollection;

@@ -1,5 +1,5 @@
 
-package com.apmasphere.billproto.models.subscription;
+package com.apmasphere.billapi.models.subscription;
 
 import org.mongojack.Id;
 

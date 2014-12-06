@@ -1,4 +1,4 @@
-package com.apmasphere.billproto.conf;
+package com.apmasphere.billapi;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;

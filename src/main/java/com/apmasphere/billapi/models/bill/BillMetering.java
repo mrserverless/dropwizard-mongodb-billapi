@@ -1,8 +1,5 @@
 
-package com.apmasphere.billproto.models.bill;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.apmasphere.billapi.models.bill;
 
 public class BillMetering {
     

@@ -1,5 +1,5 @@
 
-package com.apmasphere.billproto.models.bill;
+package com.apmasphere.billapi.models.bill;
 
 public class BillInstallmants {
 

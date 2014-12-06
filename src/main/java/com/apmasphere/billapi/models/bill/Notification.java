@@ -1,4 +1,4 @@
-package com.apmasphere.billproto.models.bill;
+package com.apmasphere.billapi.models.bill;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.mongojack.Id;

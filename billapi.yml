@@ -1,18 +1,19 @@
 
 mongo:
-  host:     ds039487.mongolab.com
-  port:     39487
-  db:       tycoon-mongo
-  user:     bill
-  password: proto
+  host:     localhost
+  port:     27017
+  db:       billapi
+  user:
+  password:
 
+#use simple server with single port for heroku
 server:
-  applicationConnectors:
-    - type: http
-      port: 8080
-  adminConnectors:
-    - type: http
-      port: 8081
+  type: simple
+  applicationContextPath: /
+  adminContextPath: /admin
+  connector:
+    type: http
+    port: 8080
 
 # Logging settings.
 logging:

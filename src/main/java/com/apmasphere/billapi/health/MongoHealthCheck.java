@@ -1,6 +1,6 @@
-package com.apmasphere.billproto.health;
+package com.apmasphere.billapi.health;
 
-import com.apmasphere.billproto.db.MongoManaged;
+import com.apmasphere.billapi.db.MongoManaged;
 import com.codahale.metrics.health.HealthCheck;
 
 /**
