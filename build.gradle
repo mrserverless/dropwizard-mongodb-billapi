@@ -15,9 +15,6 @@ apply plugin: 'com.github.johnrengelman.shadow'
 group = 'com.apmasphere.billapi'
 version = '1.0'
 mainClassName = group + '.BillAPI'
-ext {
-    appBaseName = 'billapi'
-}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
